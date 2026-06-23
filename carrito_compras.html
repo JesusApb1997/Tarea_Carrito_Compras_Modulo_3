@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos Premium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/css/style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <h1><img src="src/img/logo_por_mi/Gemini_Generated_Image_if1mlgif1mlgif1m-removebg-preview.png" alt="Cursos Premium Logo"></h1>
+            </div>
+            
+            <div class="cart-container">
+                <button class="cart-btn" id="cart-btn">
+                    🛒 Carrito (<span id="cart-count">0</span>)
+                </button>
+                
+                <div id="carrito" class="carrito">
+                    <table id="lista-carrito" class="u-full-width">
+                        <thead>
+                            <tr>
+                                <th>Imagen</th>
+                                <th>Nombre</th>
+                                <th>Precio</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <div class="total-container">
+                        <strong>Total: $<span id="total-price">0</span></strong>
+                    </div>
+                    <a href="#" id="vaciar-carrito" class="btn btn-block">Vaciar Carrito</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero">
+        <div class="container">
+            <h2>Aprende las habilidades del futuro</h2>
+            <p>Descubre nuestros cursos premium diseñados para impulsar tu carrera al siguiente nivel.</p>
+        </div>
+    </div>
+
+    <main class="container">
+        <h2 class="section-title">Nuestros Cursos</h2>
+        
+        <div class="grid" id="lista-cursos">
+            <!-- Curso 1 -->
+            <div class="card">
+                <img src="src/img/pexels-katerina-holmes-5905607.jpg" class="imagen-curso u-full-width" alt="Curso 1">
+                <div class="info-card">
+                    <h4>Desarrollo Web Full Stack</h4>
+                    <p>Aprende a crear aplicaciones modernas desde cero.</p>
+                    <p class="precio">$200 <span class="precio-oferta">$99</span></p>
+                    <a href="#" class="btn btn-primary agregar-carrito" data-id="1">Agregar Al Carrito</a>
+                </div>
+            </div>
+
+            <!-- Curso 2 -->
+            <div class="card">
+                <img src="src/img/pexels-mikhail-nilov-9158761.jpg" class="imagen-curso u-full-width" alt="Curso 2">
+                <div class="info-card">
+                    <h4>Diseño UI/UX Avanzado</h4>
+                    <p>Crea interfaces hermosas y experiencias increíbles.</p>
+                    <p class="precio">$150 <span class="precio-oferta">$75</span></p>
+                    <a href="#" class="btn btn-primary agregar-carrito" data-id="2">Agregar Al Carrito</a>
+                </div>
+            </div>
+
+            <!-- Curso 3 -->
+            <div class="card">
+                <img src="src/img/pexels-n-voitkevich-4943722.jpg" class="imagen-curso u-full-width" alt="Curso 3">
+                <div class="info-card">
+                    <h4>Ciencia de Datos con Python</h4>
+                    <p>Domina el análisis de datos y machine learning.</p>
+                    <p class="precio">$250 <span class="precio-oferta">$120</span></p>
+                    <a href="#" class="btn btn-primary agregar-carrito" data-id="3">Agregar Al Carrito</a>
+                </div>
+            </div>
+
+            <!-- Curso 4 -->
+            <div class="card">
+                <img src="src/img/pexels-roman-odintsov-5912280.jpg" class="imagen-curso u-full-width" alt="Curso 4">
+                <div class="info-card">
+                    <h4>Marketing Digital Estratégico</h4>
+                    <p>Posiciona marcas y aumenta las ventas en línea.</p>
+                    <p class="precio">$180 <span class="precio-oferta">$85</span></p>
+                    <a href="#" class="btn btn-primary agregar-carrito" data-id="4">Agregar Al Carrito</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Cursos Premium. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="src/js/app.js"></script>
+</body>
+</html>
