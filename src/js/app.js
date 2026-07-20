@@ -6,6 +6,7 @@ const listaCursos = document.querySelector('#lista-cursos');
 const cartBtn = document.querySelector('#cart-btn');
 const cartCount = document.querySelector('#cart-count');
 const totalPriceEl = document.querySelector('#total-price');
+const contenido = document.querySelector('#contenido');
 
 let articulosCarrito = [];
 
@@ -13,6 +14,15 @@ let articulosCarrito = [];
 cargarEventListeners();
 
 function cargarEventListeners() {
+    // Cargar carrito desde localStorage cuando se carga la página
+    document.addEventListener('DOMContentLoaded', () => {
+        articulosCarrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        carritoHTML();
+        if (articulosCarrito.length > 0) {
+            mostrarMensaje('El carrito se cargó desde localStorage.', 'info');
+        }
+    });
+
     // Toggle carrito display
     cartBtn.addEventListener('click', () => {
         carrito.classList.toggle('active');
@@ -32,10 +42,13 @@ function cargarEventListeners() {
     carrito.addEventListener('click', eliminarCurso);
 
     // Vaciar el carrito
-    vaciarCarritoBtn.addEventListener('click', () => {
+    vaciarCarritoBtn.addEventListener('click', (e) => {
+        e.preventDefault();
         articulosCarrito = []; // reseteamos el arreglo
         limpiarHTML(); // Eliminamos todo el HTML
         actualizarTotales();
+        sincronizarStorage();
+        mostrarMensaje('Carrito vacío y guardado en localStorage.', 'info');
     });
 }
 
@@ -58,6 +71,7 @@ function eliminarCurso(e) {
         articulosCarrito = articulosCarrito.filter(curso => curso.id !== cursoId);
 
         carritoHTML(); // Iterar sobre el carrito y mostrar su HTML
+        mostrarMensaje('Curso eliminado del carrito.', 'info');
     }
 }
 
@@ -92,6 +106,7 @@ function leerDatosCurso(curso) {
     }
 
     carritoHTML();
+    mostrarMensaje('Curso agregado al carrito.', 'info');
 }
 
 // Muestra el Carrito de compras en el HTML
@@ -119,6 +134,7 @@ function carritoHTML() {
     });
 
     actualizarTotales();
+    sincronizarStorage();
 }
 
 // Actualiza contador y precio total
@@ -137,4 +153,25 @@ function limpiarHTML() {
     while (contenedorCarrito.firstChild) {
         contenedorCarrito.removeChild(contenedorCarrito.firstChild);
     }
+}
+
+function mostrarMensaje(mensaje, tipo = 'info') {
+    limpiarMensaje();
+    const mensajeP = document.createElement('p');
+    mensajeP.textContent = mensaje;
+    mensajeP.classList.add(tipo === 'error' ? 'error' : 'mensaje');
+    contenido.appendChild(mensajeP);
+
+    setTimeout(() => {
+        mensajeP.remove();
+    }, 3000);
+}
+
+function limpiarMensaje() {
+    const mensajes = contenido.querySelectorAll('.mensaje, .error');
+    mensajes.forEach(mensaje => mensaje.remove());
+}
+
+function sincronizarStorage() {
+    localStorage.setItem('carrito', JSON.stringify(articulosCarrito));
 }
